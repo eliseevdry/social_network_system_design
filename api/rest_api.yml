@@ -1,0 +1,483 @@
+openapi: 3.0.0
+info:
+  title: Social Network System Design API
+  version: 1.0.0
+  description: API для работы с постами, комментариями, лайками и подписками
+servers:
+  - url: https://api.example.com/api/v1
+    description: Production server
+
+security:
+  - BearerAuth: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    PostRequest:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+          example: 8832912345678901234
+        title:
+          type: string
+          example: "Эйфелева башня в Париже"
+        latitude:
+          type: number
+          format: float
+          example: 48.8584
+        longitude:
+          type: number
+          format: float
+          example: 2.2945
+        content:
+          type: array
+          items:
+            type: string
+            format: binary
+      required:
+        - userId
+        - title
+        - latitude
+        - longitude
+        - content
+
+    CommentRequest:
+      type: object
+      properties:
+        postId:
+          type: integer
+          format: int64
+          example: 1312912345678901234
+        userId:
+          type: integer
+          format: int64
+          example: 728112345678901234
+        comment:
+          type: string
+          example: "Красиво, скоро приеду"
+      required:
+        - postId
+        - userId
+        - comment
+
+    LikeRequest:
+      type: object
+      properties:
+        postId:
+          type: integer
+          format: int64
+          example: 1312912345678901234
+        userId:
+          type: integer
+          format: int64
+          example: 728112345678901234
+      required:
+        - postId
+        - userId
+
+    FollowRequest:
+      type: object
+      properties:
+        authorId:
+          type: integer
+          format: int64
+          example: 8832912345678901234
+        followerId:
+          type: integer
+          format: int64
+          example: 728112345678901234
+        follow:
+          type: boolean
+          example: true
+      required:
+        - authorId
+        - followerId
+        - follow
+
+    PostResponse:
+      type: object
+      properties:
+        postId:
+          type: integer
+          format: int64
+          example: 1312912345678901234
+        authorId:
+          type: integer
+          format: int64
+          example: 8832912345678901234
+        title:
+          type: string
+          example: "Эйфелева башня в Париже"
+        latitude:
+          type: number
+          format: float
+          example: 48.8584
+        longitude:
+          type: number
+          format: float
+          example: 2.2945
+        country:
+          type: string
+          example: "Франция"
+        city:
+          type: string
+          example: "Париж"
+        likeCount:
+          type: integer
+          example: 6
+        commentsCount:
+          type: integer
+          example: 3
+        content:
+          type: array
+          items:
+            type: string
+            format: binary
+        createdDate:
+          type: integer
+          example: 1739539192
+
+    CommentResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 2281712345678901234
+        userId:
+          type: integer
+          format: int64
+          example: 728112345678901234
+        title:
+          type: string
+          example: "Красиво, скоро приеду"
+        createdDate:
+          type: integer
+          example: 1739539192
+
+    LikeResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 2281712345678901234
+        userId:
+          type: integer
+          format: int64
+          example: 728112345678901234
+        createdDate:
+          type: integer
+          example: 1739539192
+
+    PaginatedPostsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostResponse'
+        total:
+          type: integer
+          description: Общее количество постов
+          example: 100
+        page:
+          type: integer
+          description: Текущая страница
+          example: 1
+        limit:
+          type: integer
+          description: Количество постов на странице
+          example: 10
+
+    PaginatedCommentsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommentResponse'
+        total:
+          type: integer
+          description: Общее количество комментариев
+          example: 50
+        page:
+          type: integer
+          description: Текущая страница
+          example: 1
+        limit:
+          type: integer
+          description: Количество комментариев на странице
+          example: 10
+
+    PaginatedLikesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LikeResponse'
+        total:
+          type: integer
+          description: Общее количество лайков
+          example: 30
+        page:
+          type: integer
+          description: Текущая страница
+          example: 1
+        limit:
+          type: integer
+          description: Количество лайков на странице
+          example: 10
+
+paths:
+  /posts:
+    post:
+      summary: Создать новый пост
+      description: Создает новый пост с изображениями и геолокацией
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostRequest'
+      responses:
+        '201':
+          description: Пост успешно создан
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '500':
+          description: Внутренняя ошибка сервера
+
+    get:
+      summary: Получить список постов с пагинацией, фильтрацией и сортировкой
+      description: Возвращает список постов с изображениями и метаданными
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Номер страницы
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+          description: Количество постов на странице
+        - in: query
+          name: authorId
+          schema:
+            type: integer
+            format: int64
+          description: Фильтр по ID автора
+        - in: query
+          name: title
+          schema:
+            type: string
+          description: Фильтр по заголовку (поиск по подстроке)
+        - in: query
+          name: country
+          schema:
+            type: string
+          description: Фильтр по стране
+        - in: query
+          name: city
+          schema:
+            type: string
+          description: Фильтр по городу
+        - in: query
+          name: likeCountGte
+          schema:
+            type: integer
+          description: Фильтр по количеству лайков (больше или равно)
+        - in: query
+          name: likeCountLt
+          schema:
+            type: integer
+          description: Фильтр по количеству лайков (меньше)
+        - in: query
+          name: commentsCountGte
+          schema:
+            type: integer
+          description: Фильтр по количеству комментариев (больше или равно)
+        - in: query
+          name: commentsCountLte
+          schema:
+            type: integer
+          description: Фильтр по количеству комментариев (меньше или равно)
+        - in: query
+          name: sortBy
+          schema:
+            type: string
+            enum: [title, latitude, longitude, country, city, likeCount, commentsCount, createdDate]
+            default: createdDate
+          description: Поле для сортировки
+        - in: query
+          name: sortOrder
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+          description: Порядок сортировки (asc - по возрастанию, desc - по убыванию)
+      responses:
+        '200':
+          description: Список постов успешно получен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPostsResponse'
+        '401':
+          description: Пользователь не авторизован
+        '500':
+          description: Внутренняя ошибка сервера
+
+  /comments:
+    post:
+      summary: Добавить комментарий к посту
+      description: Добавляет комментарий к указанному посту
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+      responses:
+        '201':
+          description: Комментарий успешно добавлен
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '404':
+          description: Пост не найден
+        '500':
+          description: Внутренняя ошибка сервера
+
+    get:
+      summary: Получить список комментариев с пагинацией
+      description: Возвращает список комментариев для поста
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Номер страницы
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+          description: Количество комментариев на странице
+      responses:
+        '200':
+          description: Список комментариев успешно получен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCommentsResponse'
+        '401':
+          description: Пользователь не авторизован
+        '500':
+          description: Внутренняя ошибка сервера
+
+  /likes:
+    post:
+      summary: Поставить лайк посту
+      description: Добавляет лайк к указанному посту
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LikeRequest'
+      responses:
+        '201':
+          description: Лайк успешно добавлен
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '404':
+          description: Пост не найден
+        '500':
+          description: Внутренняя ошибка сервера
+
+    get:
+      summary: Получить список лайков с пагинацией
+      description: Возвращает список лайков для поста
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Номер страницы
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+          description: Количество лайков на странице
+      responses:
+        '200':
+          description: Список лайков успешно получен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedLikesResponse'
+        '401':
+          description: Пользователь не авторизован
+        '500':
+          description: Внутренняя ошибка сервера
+
+  /follow:
+    post:
+      summary: Подписаться или отписаться от автора
+      description: Позволяет подписаться или отписаться от автора
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FollowRequest'
+      responses:
+        '201':
+          description: Подписка обновлена
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '404':
+          description: Автор не найден
+        '500':
+          description: Внутренняя ошибка сервера
