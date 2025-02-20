@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
-  title: Social Network System Design API
+  title: Social Media API
   version: 1.0.0
   description: API для работы с постами, комментариями, лайками и подписками
 servers:
-  - url: https://api.example.com/api/v1
+  - url: https://api.example.com/v1
     description: Production server
 
 security:
@@ -177,6 +177,18 @@ components:
           type: integer
           example: 1739539192
 
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Номер страницы (начиная с 1)
+          example: 1
+        limit:
+          type: integer
+          description: Количество элементов на странице
+          example: 10
+
     PaginatedPostsResponse:
       type: object
       properties:
@@ -244,6 +256,13 @@ paths:
       description: Создает новый пост с изображениями и геолокацией
       security:
         - BearerAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          schema:
+            type: string
+          required: true
+          description: Ключ идемпотентности для предотвращения дублирования запросов
       requestBody:
         content:
           multipart/form-data:
@@ -256,6 +275,8 @@ paths:
           description: Неверный запрос (например, отсутствуют обязательные поля)
         '401':
           description: Пользователь не авторизован
+        '409':
+          description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
         '500':
           description: Внутренняя ошибка сервера
 
@@ -353,6 +374,13 @@ paths:
       description: Добавляет комментарий к указанному посту
       security:
         - BearerAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          schema:
+            type: string
+          required: true
+          description: Ключ идемпотентности для предотвращения дублирования запросов
       requestBody:
         content:
           application/json:
@@ -367,6 +395,8 @@ paths:
           description: Пользователь не авторизован
         '404':
           description: Пост не найден
+        '409':
+          description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
         '500':
           description: Внутренняя ошибка сервера
 
@@ -409,6 +439,13 @@ paths:
       description: Добавляет лайк к указанному посту
       security:
         - BearerAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          schema:
+            type: string
+          required: true
+          description: Ключ идемпотентности для предотвращения дублирования запросов
       requestBody:
         content:
           application/json:
@@ -423,6 +460,8 @@ paths:
           description: Пользователь не авторизован
         '404':
           description: Пост не найден
+        '409':
+          description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
         '500':
           description: Внутренняя ошибка сервера
 
@@ -465,6 +504,13 @@ paths:
       description: Позволяет подписаться или отписаться от автора
       security:
         - BearerAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          schema:
+            type: string
+          required: true
+          description: Ключ идемпотентности для предотвращения дублирования запросов
       requestBody:
         content:
           application/json:
@@ -479,5 +525,7 @@ paths:
           description: Пользователь не авторизован
         '404':
           description: Автор не найден
+        '409':
+          description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
         '500':
           description: Внутренняя ошибка сервера
