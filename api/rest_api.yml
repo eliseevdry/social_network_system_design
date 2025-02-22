@@ -51,10 +51,6 @@ components:
     CommentRequest:
       type: object
       properties:
-        postId:
-          type: integer
-          format: int64
-          example: 1312912345678901234
         userId:
           type: integer
           format: int64
@@ -63,26 +59,20 @@ components:
           type: string
           example: "Красиво, скоро приеду"
       required:
-        - postId
         - userId
         - comment
 
     LikeRequest:
       type: object
       properties:
-        postId:
-          type: integer
-          format: int64
-          example: 1312912345678901234
         userId:
           type: integer
           format: int64
           example: 728112345678901234
       required:
-        - postId
         - userId
 
-    FollowRequest:
+    SubscriptionsRequest:
       type: object
       properties:
         authorId:
@@ -269,7 +259,7 @@ paths:
           description: Внутренняя ошибка сервера
 
     get:
-      summary: Получить список постов с пагинацией, фильтрацией и сортировкой
+      summary: Получить список постов с пагинацией, фильтрацией и сортировкой в обратном хронологическом порядке
       description: Возвращает список постов с изображениями и метаданными
       security:
         - BearerAuth: []
@@ -310,40 +300,6 @@ paths:
           schema:
             type: string
           description: Фильтр по городу
-        - in: query
-          name: likeCountGte
-          schema:
-            type: integer
-          description: Фильтр по количеству лайков (больше или равно)
-        - in: query
-          name: likeCountLt
-          schema:
-            type: integer
-          description: Фильтр по количеству лайков (меньше)
-        - in: query
-          name: commentsCountGte
-          schema:
-            type: integer
-          description: Фильтр по количеству комментариев (больше или равно)
-        - in: query
-          name: commentsCountLte
-          schema:
-            type: integer
-          description: Фильтр по количеству комментариев (меньше или равно)
-        - in: query
-          name: sortBy
-          schema:
-            type: string
-            enum: [title, latitude, longitude, country, city, likeCount, commentsCount, createdDate]
-            default: createdDate
-          description: Поле для сортировки
-        - in: query
-          name: sortOrder
-          schema:
-            type: string
-            enum: [asc, desc]
-            default: desc
-          description: Порядок сортировки (asc - по возрастанию, desc - по убыванию)
       responses:
         '200':
           description: Список постов успешно получен
@@ -363,6 +319,13 @@ paths:
       security:
         - BearerAuth: []
       parameters:
+        - in: query
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: id поста
         - in: header
           name: Idempotency-Key
           schema:
@@ -394,6 +357,13 @@ paths:
       security:
         - BearerAuth: []
       parameters:
+        - in: query
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: id поста
         - in: query
           name: page
           schema:
@@ -428,6 +398,13 @@ paths:
       security:
         - BearerAuth: []
       parameters:
+        - in: query
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: id поста
         - in: header
           name: Idempotency-Key
           schema:
@@ -460,6 +437,13 @@ paths:
         - BearerAuth: []
       parameters:
         - in: query
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: id поста
+        - in: query
           name: page
           schema:
             type: integer
@@ -486,7 +470,7 @@ paths:
         '500':
           description: Внутренняя ошибка сервера
 
-  /follow:
+  /subscriptions:
     post:
       summary: Подписаться или отписаться от автора
       description: Позволяет подписаться или отписаться от автора
@@ -503,7 +487,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FollowRequest'
+              $ref: '#/components/schemas/SubscriptionsRequest'
       responses:
         '201':
           description: Подписка обновлена
