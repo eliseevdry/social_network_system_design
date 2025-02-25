@@ -1,0 +1,737 @@
+openapi: 3.0.0
+info:
+  title: Social Network System Design API
+  version: 1.0.0
+  description: API для работы с постами, комментариями, лайками и подписками
+servers:
+  - url: https://api.example.com/api/v1
+    description: Production server
+
+security:
+  - BearerAuth: []
+  
+tags:
+  - name: posts
+  - name: comments
+  - name: likes
+  - name: subscriptions
+  - name: media
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    PostRequest:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+          example: 8832912345678901234
+        title:
+          type: string
+          example: "Эйфелева башня в Париже"
+        latitude:
+          type: number
+          format: float
+          example: 48.8584
+        longitude:
+          type: number
+          format: float
+          example: 2.2945
+        content:
+          type: array
+          items:
+            type: string
+            example: "https://blob.storage.com/api/v1/content/92810"
+      required:
+        - userId
+        - title
+        - latitude
+        - longitude
+        - content
+
+    PostUpdateRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Обновленный заголовок поста"
+        latitude:
+          type: number
+          format: float
+          example: 48.8584
+        longitude:
+          type: number
+          format: float
+          example: 2.2945
+        content:
+          type: array
+          items:
+            type: string
+            example: "https://blob.storage.com/api/v1/content/92810"
+      required:
+        - title
+        - content
+
+    CommentRequest:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+          example: 728112345678901234
+        comment:
+          type: string
+          example: "Красиво, скоро приеду"
+      required:
+        - userId
+        - comment
+
+    CommentUpdateRequest:
+      type: object
+      properties:
+        comment:
+          type: string
+          example: "Обновленный комментарий"
+      required:
+        - comment
+
+    LikeRequest:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+          example: 728112345678901234
+      required:
+        - userId
+
+    SubscriptionsRequest:
+      type: object
+      properties:
+        authorId:
+          type: integer
+          format: int64
+          example: 8832912345678901234
+        followerId:
+          type: integer
+          format: int64
+          example: 728112345678901234
+      required:
+        - authorId
+        - followerId
+        - follow
+
+    PostResponse:
+      type: object
+      properties:
+        postId:
+          type: integer
+          format: int64
+          example: 1312912345678901234
+        authorId:
+          type: integer
+          format: int64
+          example: 8832912345678901234
+        title:
+          type: string
+          example: "Эйфелева башня в Париже"
+        latitude:
+          type: number
+          format: float
+          example: 48.8584
+        longitude:
+          type: number
+          format: float
+          example: 2.2945
+        country:
+          type: string
+          example: "Франция"
+        city:
+          type: string
+          example: "Париж"
+        likeCount:
+          type: integer
+          example: 6
+        commentsCount:
+          type: integer
+          example: 3
+        content:
+          type: array
+          items:
+            type: string
+            example: "https://blob.storage.com/api/v1/content/92810"
+        createdDate:
+          type: integer
+          example: 1739539192
+
+    CommentResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 2281712345678901234
+        userId:
+          type: integer
+          format: int64
+          example: 728112345678901234
+        title:
+          type: string
+          example: "Красиво, скоро приеду"
+        createdDate:
+          type: integer
+          example: 1739539192
+
+    LikeResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 2281712345678901234
+        userId:
+          type: integer
+          format: int64
+          example: 728112345678901234
+        createdDate:
+          type: integer
+          example: 1739539192
+
+    PaginatedPostsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostResponse'
+        total:
+          type: integer
+          description: Общее количество постов
+          example: 100
+        page:
+          type: integer
+          description: Текущая страница
+          example: 1
+        limit:
+          type: integer
+          description: Количество постов на странице
+          example: 10
+
+    PaginatedCommentsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommentResponse'
+        total:
+          type: integer
+          description: Общее количество комментариев
+          example: 50
+        page:
+          type: integer
+          description: Текущая страница
+          example: 1
+        limit:
+          type: integer
+          description: Количество комментариев на странице
+          example: 10
+
+    PaginatedLikesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LikeResponse'
+        total:
+          type: integer
+          description: Общее количество лайков
+          example: 30
+        page:
+          type: integer
+          description: Текущая страница
+          example: 1
+        limit:
+          type: integer
+          description: Количество лайков на странице
+          example: 10
+
+paths:
+  /posts:
+    post:
+      tags:
+        - posts
+      summary: Создать новый пост
+      description: Создает новый пост с изображениями и геолокацией
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          schema:
+            type: string
+          required: true
+          description: Ключ идемпотентности для предотвращения дублирования запросов
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostRequest'
+      responses:
+        '201':
+          description: Пост успешно создан
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '409':
+          description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
+        '500':
+          description: Внутренняя ошибка сервера
+
+    get:
+      tags:
+        - posts
+      summary: Получить список постов с пагинацией, фильтрацией и сортировкой в обратном хронологическом порядке
+      description: Возвращает список постов с изображениями и метаданными
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Номер страницы
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+          description: Количество постов на странице
+        - in: query
+          name: authorId
+          schema:
+            type: integer
+            format: int64
+          description: Фильтр по ID автора
+        - in: query
+          name: title
+          schema:
+            type: string
+          description: Фильтр по заголовку (поиск по подстроке)
+        - in: query
+          name: country
+          schema:
+            type: string
+          description: Фильтр по стране
+        - in: query
+          name: city
+          schema:
+            type: string
+          description: Фильтр по городу
+      responses:
+        '200':
+          description: Список постов успешно получен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPostsResponse'
+        '401':
+          description: Пользователь не авторизован
+        '500':
+          description: Внутренняя ошибка сервера
+
+  /posts/{postId}:
+    put:
+      tags:
+        - posts
+      summary: Редактировать пост
+      description: Редактирует существующий пост
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: ID поста
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostUpdateRequest'
+      responses:
+        '200':
+          description: Пост успешно обновлен
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '403':
+          description: Нет прав на редактирование поста
+        '404':
+          description: Пост не найден
+        '500':
+          description: Внутренняя ошибка сервера
+    delete:
+      tags:
+        - posts
+      summary: Удалить пост
+      description: Удаляет существующий пост
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: ID поста
+      responses:
+        '200':
+          description: Пост успешно удален
+        '401':
+          description: Пользователь не авторизован
+        '403':
+          description: Нет прав на удаление поста
+        '404':
+          description: Пост не найден
+        '500':
+          description: Внутренняя ошибка сервера
+
+  /posts/{postId}/comments:
+    post:
+      tags:
+        - comments
+      summary: Добавить комментарий к посту
+      description: Добавляет комментарий к указанному посту
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: ID поста
+        - in: header
+          name: Idempotency-Key
+          schema:
+            type: string
+          required: true
+          description: Ключ идемпотентности для предотвращения дублирования запросов
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+      responses:
+        '201':
+          description: Комментарий успешно добавлен
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '404':
+          description: Пост не найден
+        '403':
+          description: Нет прав на добавление комментария
+        '409':
+          description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
+        '500':
+          description: Внутренняя ошибка сервера
+
+    get:
+      tags:
+        - comments
+      summary: Получить список комментариев с пагинацией
+      description: Возвращает список комментариев для поста
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: ID поста
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Номер страницы
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+          description: Количество комментариев на странице
+      responses:
+        '200':
+          description: Список комментариев успешно получен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCommentsResponse'
+        '401':
+          description: Пользователь не авторизован
+        '403':
+          description: Нет прав на просмотр комментариев
+        '500':
+          description: Внутренняя ошибка сервера
+
+  /posts/{postId}/comments/{commentId}:
+    put:
+      tags:
+        - comments
+      summary: Редактировать комментарий
+      description: Редактирует существующий комментарий
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: ID поста
+        - in: path
+          name: commentId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: ID комментария
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentUpdateRequest'
+      responses:
+        '200':
+          description: Комментарий успешно обновлен
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '403':
+          description: Нет прав на редактирование комментария
+        '404':
+          description: Комментарий не найден
+        '500':
+          description: Внутренняя ошибка сервера
+    delete:
+      tags:
+        - comments
+      summary: Удалить комментарий
+      description: Удаляет существующий комментарий
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: ID поста
+        - in: path
+          name: commentId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: ID комментария
+      responses:
+        '200':
+          description: Комментарий успешно удален
+        '401':
+          description: Пользователь не авторизован
+        '403':
+          description: Нет прав на удаление комментария
+        '404':
+          description: Пост или комментарий не найден
+        '500':
+          description: Внутренняя ошибка сервера
+
+  /posts/{postId}/likes:
+    post:
+      tags:
+        - likes
+      summary: Поставить или убрать лайк
+      description: Добавляет лайк к указанному посту или удаляет лайк
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: ID поста
+        - in: header
+          name: Idempotency-Key
+          schema:
+            type: string
+          required: true
+          description: Ключ идемпотентности для предотвращения дублирования запросов
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LikeRequest'
+      responses:
+        '201':
+          description: Лайк успешно добавлен
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '404':
+          description: Пост не найден
+        '409':
+          description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
+        '500':
+          description: Внутренняя ошибка сервера
+
+    get:
+      tags:
+        - likes
+      summary: Получить список лайков с пагинацией
+      description: Возвращает список лайков для поста
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: postId
+          schema:
+            type: integer
+            format: int64
+          required: true
+          description: ID поста
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Номер страницы
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+          description: Количество лайков на странице
+      responses:
+        '200':
+          description: Список лайков успешно получен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedLikesResponse'
+        '401':
+          description: Пользователь не авторизован
+        '500':
+          description: Внутренняя ошибка сервера
+
+  /subscriptions:
+    post:
+      tags:
+        - subscriptions
+      summary: Подписаться или отписаться от автора
+      description: Позволяет подписаться или отписаться от автора
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          schema:
+            type: string
+          required: true
+          description: Ключ идемпотентности для предотвращения дублирования запросов
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionsRequest'
+      responses:
+        '201':
+          description: Подписка обновлена
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '404':
+          description: Автор не найден
+        '409':
+          description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
+        '500':
+          description: Внутренняя ошибка сервера
+  
+  /media:
+    post:
+      tags:
+        - media
+      summary: Загрузить медиа-файл
+      description: Позволяет загрузить медиа-файл
+      operationId: uploadMedia
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          schema:
+            type: string
+          required: true
+          description: Ключ идемпотентности для предотвращения дублирования запросов
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Файл загружен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uri:
+                    type: string
+                    example: "https://blob.storage.com/api/v1/content/92810"
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '409':
+          description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
+        '503':
+          description: Ошибка при загрузке в blob storage
+        '500':
+          description: Внутренняя ошибка сервера
