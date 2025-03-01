@@ -179,13 +179,30 @@ size: 8b + 8b + 8b = 24b * 10 = 240b
 ## connections
 Число одновременных подключений: 13 000 000 * 0,1 = 1 300 000
 
-## capacity
+## capacity (1 year)
 - write (post-media): 9 Mb/sec * 86400 * 365 = 284 Tb
-- write (post-meta): 0,024 Mb/sec * 31536000 = 1 Tb
+- write (post-meta): 0,096 Mb/sec * 31536000 = 3 Tb
 - write (comment): 1,2 Mb/sec * 31536000 = 38 Tb
 - write (like): 0,024 Mb/sec * 31536000 = 1 Tb
+- write (point): 0,024 Mb/sec * 31536000 = 1 Tb
 - write (follow): 0,0003 Mb/sec * 31536000 = 0,009 Tb
 
 ## disks
-HDD: write + read(post-service) 9337
+post-service:  9337 RPS, 370 Mb/s, 42 Tb
+point-service: 3016 RPS, 440 Mb/s, 1 Tb
+relation-service: 50 RPS, 0,001 Mb/s, 0,009 Tb
+
+#### HDD
+post-service: (9337 RPS / 100 = 94) or (370 Mb/s / 100 Mb/s = 4) or (42 Tb / 20 Tb = 3) = 94 disks by 1 Tb (3500 $)
+point-service: (3016 RPS / 100 = 31) or (440 Mb/s / 100 Mb/s = 5) or (1 Tb / 20 Tb = 1) = 31 disks by 0,5 Tb (600 $)
+relation-service: (50 RPS / 100 = 1) or (0,001 Mb/s / 100 Mb/s = 1 disk) or (0,009 Tb / 20 Tb = 1) = 1 disk by 0,5 Tb (20 $)
+#### SSD (SATA)
+post-service: (9337 RPS / 1000 = 10) or (370 Mb/s / 500 Mb/s = 1) or (42 Tb / 80 Tb = 1) = 10 disks by 5 Tb (4500 $)
+point-service: (3016 RPS / 1000 = 4) or (440 Mb/s / 500 Mb/s = 1) or (1 Tb / 80 Tb = 1) = 4 disks by 0,5 Tb (150 $)
+relation-service: (50 RPS / 1000 = 1) or (0,001 Mb/s / 500 Mb/s = 1 disk) or (0,009 Tb / 80 Tb = 1) = 1 disk by 0,5 Tb (40 $)
+
+### final configuration
+post-service: 10 SSD by 5 Tb (4500 $)
+point-service: 4 SSD by 0,5 Tb (150 $)
+relation-service: 1 HDD by 0,5 Tb (20 $)
 
