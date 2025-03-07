@@ -18,11 +18,6 @@ Table region_feed_pop {
   posts json[] [note: 'by like count']
 }
 
-Table point_feed_pop {
-  point_id bigint [primary key]
-  posts json[] [note: 'by like count']
-}
-
 Table like_feed_chrono {
   post_id bigint [primary key]
   likes json[] [note: 'by crono order']

@@ -191,18 +191,26 @@ size: 8b + 8b + 8b = 24b * 10 = 240b
 post-service:  9337 RPS, 370 Mb/s, 42 Tb
 point-service: 3016 RPS, 440 Mb/s, 1 Tb
 relation-service: 50 RPS, 0,001 Mb/s, 0,009 Tb
+media-service: 1 511 RPS, 22 584 Mb/sec, 284 Tb
 
 #### HDD
 post-service: (9337 RPS / 100 = 94) or (370 Mb/s / 100 Mb/s = 4) or (42 Tb / 20 Tb = 3) = 94 disks by 1 Tb (3500 $)
 point-service: (3016 RPS / 100 = 31) or (440 Mb/s / 100 Mb/s = 5) or (1 Tb / 20 Tb = 1) = 31 disks by 0,5 Tb (600 $)
-relation-service: (50 RPS / 100 = 1) or (0,001 Mb/s / 100 Mb/s = 1 disk) or (0,009 Tb / 20 Tb = 1) = 1 disk by 0,5 Tb (20 $)
+relation-service: (50 RPS / 100 = 1) or (0,001 Mb/s / 100 Mb/s = 1) or (0,009 Tb / 20 Tb = 1) = 1 disk by 0,5 Tb (20 $)
+media-service: (1 511 RPS / 100 = 16) or (22 584 Mb/sec / 100 Mb/s = 226) or (284 Tb / 20 Tb = 15) = 226 disks by 2 Tb (18080 $)
 #### SSD (SATA)
 post-service: (9337 RPS / 1000 = 10) or (370 Mb/s / 500 Mb/s = 1) or (42 Tb / 80 Tb = 1) = 10 disks by 5 Tb (4500 $)
 point-service: (3016 RPS / 1000 = 4) or (440 Mb/s / 500 Mb/s = 1) or (1 Tb / 80 Tb = 1) = 4 disks by 0,5 Tb (150 $)
-relation-service: (50 RPS / 1000 = 1) or (0,001 Mb/s / 500 Mb/s = 1 disk) or (0,009 Tb / 80 Tb = 1) = 1 disk by 0,5 Tb (40 $)
+relation-service: (50 RPS / 1000 = 1) or (0,001 Mb/s / 500 Mb/s = 1) or (0,009 Tb / 80 Tb = 1) = 1 disk by 0,5 Tb (40 $)
+media-service: (1 511 RPS / 1000 = 2) or (22 584 Mb/sec / 500 Mb/s = 46) or (284 Tb / 80 Tb = 4) = 46 disk by 10 Tb (69000 $)
+#### SSD (nVME)
+post-service: (9337 RPS / 10 000 = 1) or (370 Mb/s / 3000 Mb/s = 1) or (42 Tb / 20 Tb = 3) = 3 disks by 20 Tb (18 000 $)
+point-service: (3016 RPS / 10 000 = 1) or (440 Mb/s / 3000 Mb/s = 1) or (1 Tb / 20 Tb = 1) = 1 disks by 1 Tb (200 $)
+relation-service: (50 RPS / 10 000 = 1) or (0,001 Mb/s / 3000 Mb/s = 1) or (0,009 Tb / 20 Tb = 1) = 1 disk by 0,5 Tb (100 $)
+media-service: (1 511 RPS / 10 000 = 1) or (22 584 Mb/sec / 3000 Mb/s = 8) or (284 Tb / 20 Tb = 15) = 15 disks by 20 Tb (90000 $)
 
 ### final configuration
-post-service: 10 SSD by 5 Tb (4500 $)
-point-service: 4 SSD by 0,5 Tb (150 $)
+post-service: 10 SSD(SATA) by 5 Tb (4500 $)
+point-service: 4 SSD(SATA) by 0,5 Tb (150 $)
 relation-service: 1 HDD by 0,5 Tb (20 $)
-
+media-service: 15 SSD(nVME) by 20 Tb (90000 $)

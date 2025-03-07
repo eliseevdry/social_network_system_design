@@ -11,6 +11,7 @@ Table comment {
   id bigint [primary key]
   post_id bigint
   user_id bigint
+  reply_comment_id bigint
   title varchar [not null]
   created_at timestamp
 }
