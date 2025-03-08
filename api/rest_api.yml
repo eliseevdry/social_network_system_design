@@ -9,13 +9,14 @@ servers:
 
 security:
   - BearerAuth: []
-  
+
 tags:
   - name: posts
   - name: comments
   - name: likes
   - name: subscriptions
   - name: media
+  - name: points
 
 components:
   securitySchemes:
@@ -35,14 +36,10 @@ components:
         title:
           type: string
           example: "Эйфелева башня в Париже"
-        latitude:
-          type: number
-          format: float
-          example: 48.8584
-        longitude:
-          type: number
-          format: float
-          example: 2.2945
+        pointId:
+          type: integer
+          format: int64
+          example: 8291849
         content:
           type: array
           items:
@@ -61,14 +58,10 @@ components:
         title:
           type: string
           example: "Обновленный заголовок поста"
-        latitude:
-          type: number
-          format: float
-          example: 48.8584
-        longitude:
-          type: number
-          format: float
-          example: 2.2945
+        pointId:
+          type: integer
+          format: int64
+          example: 8291849
         content:
           type: array
           items:
@@ -138,24 +131,14 @@ components:
           type: integer
           format: int64
           example: 8832912345678901234
+        pointId:
+          type: integer
+          format: int64
+          example: 8291849
         title:
           type: string
           example: "Эйфелева башня в Париже"
-        latitude:
-          type: number
-          format: float
-          example: 48.8584
-        longitude:
-          type: number
-          format: float
-          example: 2.2945
-        country:
-          type: string
-          example: "Франция"
-        city:
-          type: string
-          example: "Париж"
-        likeCount:
+        likesCount:
           type: integer
           example: 6
         commentsCount:
@@ -262,6 +245,56 @@ components:
           type: integer
           description: Количество лайков на странице
           example: 10
+    
+    PointRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Эйфелева башня (южная сторона)"
+        latitude:
+          type: number
+          format: float
+          example: 48.8584
+        longitude:
+          type: number
+          format: float
+          example: 2.2945
+      required:
+        - latitude
+        - longitude
+
+    PointResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 2281712345678901234
+        title:
+          type: string
+          example: "Эйфелева башня (южная сторона)"
+        latitude:
+          type: number
+          format: float
+          example: 48.8584
+        longitude:
+          type: number
+          format: float
+          example: 2.2945
+        country:
+          type: string
+          example: "Франция"
+        region:
+          type: string
+          example: "Париж"
+        postCount:
+          type: integer
+          format: int32
+          example: 9271
+        createdDate:
+          type: integer
+          example: 1739539192
 
 paths:
   /posts:
@@ -733,5 +766,101 @@ paths:
           description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
         '503':
           description: Ошибка при загрузке в blob storage
+        '500':
+          description: Внутренняя ошибка сервера
+  
+  /points:
+    post:
+      tags:
+        - points
+      summary: Создать новую точку на карте
+      description: Позволяет создать новую точку на карте
+      operationId: savePoint
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          schema:
+            type: string
+          required: true
+          description: Ключ идемпотентности для предотвращения дублирования запросов
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PointRequest'
+      responses:
+        '200':
+          description: Точка добавлена на карту
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PointResponse'
+        '400':
+          description: Неверный запрос (например, отсутствуют обязательные поля)
+        '401':
+          description: Пользователь не авторизован
+        '409':
+          description: Конфликт (запрос с таким ключом идемпотентности уже обработан)
+        '503':
+          description: Ошибка при загрузке в blob storage
+        '500':
+          description: Внутренняя ошибка сервера
+    
+    get:
+      tags:
+        - points
+      summary: Получить 50 самых популярных точек на экране
+      description: Возвращает 50 самых популярных точек на экране
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: query
+          name: xLat
+          schema:
+            type: number
+            format: float
+            example: 47.8584
+          description: Широта X
+        - in: query
+          name: xLon
+          schema:
+            type: number
+            format: float
+            example: 2.2718
+          description: Долгота X
+        - in: query
+          name: yLat
+          schema:
+            type: number
+            format: float
+            example: 50.8584
+          description: Широта Y
+        - in: query
+          name: yLon
+          schema:
+            type: number
+            format: float
+            example: 21.2718
+          description: Долгота Y
+        - in: query
+          name: pointId
+          schema:
+            type: integer
+            format: int64
+            example: 81920
+          description: id конкретной точки (точек)
+      responses:
+        '200':
+          description: Список точек успешно получен
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PointResponse'
+        '401':
+          description: Пользователь не авторизован
         '500':
           description: Внутренняя ошибка сервера
