@@ -214,3 +214,22 @@ post-service: 10 SSD(SATA) by 5 Tb (4500 $)
 point-service: 4 SSD(SATA) by 0,5 Tb (150 $)
 relation-service: 1 HDD by 0,5 Tb (20 $)
 media-service: 15 SSD(nVME) by 20 Tb (90000 $)
+
+## hosts
+post-service (PgSQL): 15 hosts by 2 disks
+point-service (PgSQL): 3 hosts by 4 disks (RAID)
+relation-service (PgSQL): 2 hosts by 1 disk
+media-service (Amazon S3): 23 hosts by 2 disks
+
+PgSQL:
+1) хорошо работает с relation
+2) транзакционность из коробки
+3) больше экспертизы среди разработчиков
+
+Amazon S3:
+1) типичный выбор для blob storage
+2) больше экспертизы среди разработчиков
+3) репликация из коробки
+
+Так же, исходя из ограничений доступа на территории СНГ, в качестве альтернативы можно использовать Yandex Object Storage
+вместо Amazon S3 (гипотеза, нужно изучить может ли из коробки реплицироваться)
