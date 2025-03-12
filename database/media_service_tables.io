@@ -8,7 +8,7 @@
 // - использование CDN для быстрого доступа к данным в разных уголках СНГ
 // - обращение к шардам через proxy
 
-Table relation {
+Table media {
   key varchar [not null]
   post_id bigint
   created_at timestamp
