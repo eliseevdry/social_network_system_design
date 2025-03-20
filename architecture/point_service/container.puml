@@ -1,0 +1,19 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(user, "User")
+Container(apiGateway, "API Gateway", "Nginx", "Load Balancer: Uses round robin")
+ContainerQueue(messageQueue, "Events queue", "Kafka", "Message queue for CRUD-events by posts, likes and comments and places")
+
+System_Boundary(pointSystem, "Point system") {
+    Container(pointService, "Point Service", "Java", "Stores information about locations and their popularity", $tags="webApp")
+    ContainerDb(pointDatabase, "Point database", "PgSQL", "Stores points, countries and regions and their popularity",  $tags="db")
+}
+
+Rel(user, apiGateway, "Create and get points", "REST")
+Rel(apiGateway, pointService, "Create and get points", "REST")
+
+Rel(pointService, pointDatabase, "Save points and information about popularity")
+Rel(pointService, messageQueue, "Publishing events about changes in popularity places")
+Rel(messageQueue, pointService, "Subscribes to CRUD events about posts")
+@enduml

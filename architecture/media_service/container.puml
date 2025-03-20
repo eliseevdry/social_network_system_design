@@ -1,0 +1,21 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(user, "User")
+Container(apiGateway, "API Gateway", "Nginx", "Load Balancer: Uses round robin")
+ContainerQueue(messageQueue, "Events queue", "Kafka", "Message queue for CRUD-events by posts, likes and comments")
+
+System_Boundary(mediaSystem, "Media system") {
+    Container(cdn, "CDN", "Cloudflare")
+    Container(mediaService, "Media Service", "Java", "Downloading/uploading images by url", $tags="webApp")
+    ContainerDb(mediaDatabase, "Media object storage", "AWS S3", "Stores images",  $tags="db")
+}
+
+Rel(user, apiGateway, "Create and get images", "HTTPS")
+Rel(apiGateway, cdn, "Get images by url", "HTTPS")
+Rel(apiGateway, mediaService, "Save images and get url", "HTTPS")
+Rel(cdn, mediaService, "Pulls media-data", "HTTPS")
+
+Rel(mediaService, mediaDatabase, "Saving images and deleting useless images")
+Rel(mediaService, messageQueue, "Subscribes to CRUD events about posts")
+@enduml
