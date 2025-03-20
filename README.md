@@ -233,3 +233,8 @@ Amazon S3:
 
 Так же, исходя из ограничений доступа на территории СНГ, в качестве альтернативы можно использовать Yandex Object Storage
 вместо Amazon S3 (гипотеза, нужно изучить может ли из коробки реплицироваться)
+
+Полезные ссылки:
+https://www.plantuml.com/
+https://editor.swagger.io/
+https://dbdiagram.io/

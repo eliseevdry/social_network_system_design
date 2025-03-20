@@ -357,7 +357,13 @@ paths:
           schema:
             type: integer
             format: int64
-          description: Фильтр по ID автора
+          description: Фильтр по ID автора (обратный хронологический порядок)
+        - in: query
+          name: userId
+          schema:
+            type: integer
+            format: int64
+          description: ID юзера для домашней ленты (обратный хронологический порядок)
         - in: query
           name: title
           schema:
@@ -367,12 +373,12 @@ paths:
           name: country
           schema:
             type: string
-          description: Фильтр по стране
+          description: Фильтр по стране (самые популярные посты)
         - in: query
-          name: city
+          name: region
           schema:
             type: string
-          description: Фильтр по городу
+          description: Фильтр по региону (самые популярные посты)
       responses:
         '200':
           description: Список постов успешно получен
