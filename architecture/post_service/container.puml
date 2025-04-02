@@ -3,9 +3,6 @@
 
 Person(user, "User")
 Container(apiGateway, "API Gateway", "Nginx", "Load Balancer: Uses round robin")
-Container(feedService, "Feed service", "Software system", "Stores a cache for quick response to the user")
-Container(pointService, "Point service", "Software system", "Stores information about locations and their popularity")
-Container(mediaService, "Media service", "Software system", "Stores media-data")
 ContainerQueue(messageQueue, "Events queue", "Kafka", "Message queue for CRUD-events by posts, likes and comments")
 
 System_Boundary(coreSystem, "Core system") {
@@ -18,7 +15,4 @@ Rel(apiGateway, postService, "CRUD: posts, likes, comments", "REST")
 
 Rel(postService, postDatabase, "Save posts, likes and comments")
 Rel(postService, messageQueue, "Publishing events about changes in posts, likes and comments")
-Rel(feedService, messageQueue, "Subscribes to CRUD events about posts, likes and comments")
-Rel(pointService, messageQueue, "Subscribes to CRUD events about posts")
-Rel(mediaService, messageQueue, "Subscribes to CRUD events about posts")
 @enduml

@@ -2,15 +2,15 @@
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 Person(user, "User")
-Container(postService, "Post service", "Software system", "CRUD for posts, comments and likes")
-Container(relationService, "Relation service", "Software system", "Stores relation info")
-Container(mediaService, "Media service", "Software system", "Stores media files")
-Container(pointService, "Point service", "Software system", "Stores GEO data")
-Container(feedService, "Feed service", "Software system", "Work with cached feed")
+Container(postSystem, "Post system", "Software system", "CRUD for posts, comments and likes")
+Container(relationSystem, "Relation system", "Software system", "Stores relation info")
+Container(mediaSystem, "Media system", "Software system", "Stores media files")
+Container(pointSystem, "Point system", "Software system", "Stores GEO data")
+Container(feedSystem, "Feed system", "Software system", "Work with cached feed")
 
-Rel(user, mediaService, "Upload or download")
-Rel(user, pointService, "Get points or save point")
-Rel(user, postService, "CRUD")
-Rel(user, relationService, "Subscribe or unsubscribe")
-Rel(user, feedService, "Get feed")
+Rel(user, mediaSystem, "Upload or download")
+Rel(user, pointSystem, "Get points or save point")
+Rel(user, postSystem, "CRUD")
+Rel(user, relationSystem, "Subscribe or unsubscribe")
+Rel(user, feedSystem, "Get feed")
 @enduml
