@@ -1,0 +1,20 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(user, "User")
+Container(apiGateway, "API Gateway", "Nginx", "Load Balancer: Uses round robin")
+ContainerQueue(messageQueue, "Events queue", "Kafka", "Message queue with info about relations, popularity places, posts, likes and comments")
+Container(postSystem, "Post system", "Software system", "Stores information about posts, likes and comments")
+
+System_Boundary(feedSystem, "Feed system") {
+    Container(feedService, "Feed Service", "Java", "Stores a cache for quick response to the user", $tags="webApp")
+    ContainerDb(feedCache, "Feed cache", "Redis", "Stores a feed-cache")
+}
+
+Rel(user, apiGateway, "Getting a feed with posts", "REST")
+Rel(apiGateway, feedService, "Getting a feed with posts", "REST")
+Rel(feedService, postSystem, "Getting a feed with posts, likes and comments", "gRPC")
+
+Rel(feedService, feedCache, "Ubdate and Gets feed by keys")
+Rel(feedService, messageQueue, "Subscribes to events about posts, relations and popularity places")
+@enduml

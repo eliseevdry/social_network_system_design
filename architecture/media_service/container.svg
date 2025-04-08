@@ -1,0 +1,441 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     data-diagram-type="DESCRIPTION" height="1004px" preserveAspectRatio="none"
+     style="width:492px;height:1004px;background:#FFFFFF;" version="1.1" viewBox="0 0 492 1004" width="492px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--cluster mediaSystem-->
+        <g class="cluster" data-entity="mediaSystem" data-source-line="1552" data-uid="ent0005"
+           id="cluster_mediaSystem">
+            <rect fill="none" height="597.11" rx="2.5" ry="2.5"
+                  style="stroke:#444444;stroke-width:1;stroke-dasharray:7.0,7.0;" width="242" x="7" y="401.05"/>
+            <text fill="#444444" font-family="sans-serif" font-size="6" font-style="italic" lengthAdjust="spacing"
+                  textLength="60.6211" x="97.6895" y="408.6193">«system_boundary»
+            </text>
+            <text fill="#444444" font-family="sans-serif" font-size="6" font-style="italic" lengthAdjust="spacing"
+                  textLength="35.9297" x="110.0352" y="418.6193">«boundary»
+            </text>
+            <text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="124.7266" x="65.6367" y="437.9016">Media system
+            </text>
+            <text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="59.4551" x="98.2725" y="452.8137">[system]
+            </text>
+        </g><!--entity cdn-->
+        <g class="entity" data-entity="cdn" data-source-line="76" data-uid="ent0006" id="entity_cdn">
+            <rect fill="#438DD5" height="66.5625" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;"
+                  width="93.543" x="46.23" y="472.05"/>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="71.543" x="57.23" y="493.1887">«container»
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="38.4141" x="73.7945" y="510.8703">CDN
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="70.8691" x="57.5669" y="525.7824">[Cloudflare]
+            </text>
+        </g><!--entity mediaService-->
+        <g class="entity" data-entity="mediaService" data-source-line="76" data-uid="ent0007" id="entity_mediaService">
+            <rect fill="#438DD5" height="129.4219" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;"
+                  width="185.2861" x="35.36" y="627.61"/>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="62.9414" x="96.5324" y="648.7487">«webApp»
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="71.543" x="92.2316" y="662.7174">«container»
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="54.5078" x="64.7062" y="680.3991">Media
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="5.5703" x="119.214" y="680.3991"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="66.5156" x="124.7843" y="680.3991">Service
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="34.7109" x="110.6476" y="695.3112">[Java]
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="125.778" y="711.1364"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="165.2861"
+                  x="45.36" y="727.4332">Downloading/uploading
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50.9004"
+                  x="80.2575" y="743.7301">images
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="131.1579" y="743.7301"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="17.1719"
+                  x="135.608" y="743.7301">by
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="152.7799" y="743.7301"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="18.5186"
+                  x="157.2301" y="743.7301">url
+            </text>
+        </g><!--entity mediaDatabase-->
+        <g class="entity" data-entity="mediaDatabase" data-source-line="80" data-uid="ent0008"
+           id="entity_mediaDatabase">
+            <path d="M22.64,870.03 C22.64,860.03 127.9994,860.03 127.9994,860.03 C127.9994,860.03 233.3588,860.03 233.3588,870.03 L233.3588,972.155 C233.3588,982.155 127.9994,982.155 127.9994,982.155 C127.9994,982.155 22.64,982.155 22.64,972.155 L22.64,870.03"
+                  fill="#438DD5" style="stroke:#3C7FC0;stroke-width:0.5;"/>
+            <path d="M22.64,870.03 C22.64,880.03 127.9994,880.03 127.9994,880.03 C127.9994,880.03 233.3588,880.03 233.3588,870.03"
+                  fill="none" style="stroke:#3C7FC0;stroke-width:0.5;"/>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="29.918" x="113.0404" y="895.1687">«db»
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="71.543" x="92.2279" y="909.1374">«container»
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="54.5078" x="32.64" y="926.8191">Media
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="5.5703" x="87.1478" y="926.8191"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="55.9141" x="92.7181" y="926.8191">object
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="5.5703" x="148.6322" y="926.8191"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="69.1563" x="154.2025" y="926.8191">storage
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="32.373" x="99.9388" y="941.7312">[AWS
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="3.8145" x="132.3119" y="941.7312"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="19.9336" x="136.1263" y="941.7312">S3]
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="125.7743" y="957.5564"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="44.6045"
+                  x="78.0218" y="973.8532">Stores
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="122.6263" y="973.8532"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50.9004"
+                  x="127.0765" y="973.8532">images
+            </text>
+        </g><!--entity user-->
+        <g class="entity" data-entity="user" data-source-line="379" data-uid="ent0002" id="entity_user">
+            <rect fill="#08427B" height="100.5938" rx="2.5" ry="2.5" style="stroke:#073B6F;stroke-width:0.5;"
+                  width="77.8164" x="125.09" y="7"/>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="55.8164" x="136.09" y="28.1387">«person»
+            </text>
+            <image height="48" width="48" x="139.9982"
+                   xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACMElEQVR4Xu2YvUrFQBCFb+kj+Ai+gq3Y2PgA+gCCtZ2V2AhqaSNiqY1gYWMjaCvXykoEKy21sLCNfELgMscksz8mWfDAB3Kuye7sTmYnmcwtbU9KRozSECOVla3T6uTqvrqZPlcPT68/XNw+VtvH19XC+sGe/f9UxIhl8/Cy+vj8qrpEYIsbR1N7fSxihDK/urvMKoeKHbH3ikGMEJi8Z9WbtH92lxyEGCHErLwVqWfvG4IYXkiBXGIn7f29iOGBAe0kUkTVsmN4EcMD255bdgwvYnigFOYW54cdx4MYHlIqT5Niy6oYHuzgORRbUsXwYAfPoV4DeHl7t+MnK/Y8EMMDzVlu9foQ5y6jFAU7hhcxvOSsRLH5D2J4KbqVqMlxoK3tnEevPogRAiuXUpFiD69ZxIghZidSV75GjFiYkGc3KMEpOW8RIxXed0kNJsrOAO0ypTfnxGvEKA0xSkMMD3zfIedJFQ4hCPlUwrX1daQWbURseonRBhNue1D5rc53JkVQwN9c21Wt+D20JxLjN7hpztahSwTi3RExLDlbhhCxm55PkWLMkrvrDBW73rUTYtSQu/aGQ4h0snNzBdD1wPWptrZDDBjL6tfiebBzbA2AUjg2NT3QYkBbrR9KTS/9YoC9eAxqeu0UI/eH21yiu7VzLSqApnIqxn8Af6TiA3A/A9Bn5+lV0xcMMWDoJs6qrakTo4a6OwZxqLa97YkxC1HzMkMzNQRtE3cFUAJilMY3OGTNL0NDLqIAAAAASUVORK5CYII="
+                   y="30.9688"/>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="41.2578" x="143.3693" y="93.8203">User
+            </text>
+        </g><!--entity apiGateway-->
+        <g class="entity" data-entity="apiGateway" data-source-line="76" data-uid="ent0003" id="entity_apiGateway">
+            <rect fill="#438DD5" height="115.4531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;"
+                  width="207.8926" x="60.05" y="210.6"/>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="71.543" x="128.2248" y="231.7387">«container»
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="30.0625" x="106.9611" y="249.4203">API
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="5.5703" x="137.0236" y="249.4203"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="78.4375" x="142.5939" y="249.4203">Gateway
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="43.998" x="141.9973" y="264.3324">[Nginx]
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="161.7712" y="280.1576"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33.8311"
+                  x="70.05" y="296.4545">Load
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="103.8811" y="296.4545"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66.3086"
+                  x="108.3313" y="296.4545">Balancer:
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="174.6398" y="296.4545"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33.4482"
+                  x="179.09" y="296.4545">Uses
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="212.5383" y="296.4545"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40.9541"
+                  x="216.9885" y="296.4545">round
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="35.9707"
+                  x="146.0109" y="312.7514">robin
+            </text>
+        </g><!--entity messageQueue-->
+        <g class="entity" data-entity="messageQueue" data-source-line="84" data-uid="ent0004" id="entity_messageQueue">
+            <path d="M273.48,860.22 L480.5259,860.22 C485.5259,860.22 485.5259,921.095 485.5259,921.095 C485.5259,921.095 485.5259,981.97 480.5259,981.97 L273.48,981.97 C268.48,981.97 268.48,921.095 268.48,921.095 C268.48,921.095 268.48,860.22 273.48,860.22"
+                  fill="#438DD5" style="stroke:#3C7FC0;stroke-width:0.5;"/>
+            <path d="M480.5259,860.22 C475.5259,860.22 475.5259,921.095 475.5259,921.095 C475.5259,981.97 480.5259,981.97 480.5259,981.97"
+                  fill="none" style="stroke:#3C7FC0;stroke-width:0.5;"/>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="71.543" x="336.2315" y="876.3587">«container»
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="60.7734" x="310.8623" y="894.0403">Events
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="5.5703" x="371.6358" y="894.0403"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing"
+                  textLength="55.9375" x="377.2061" y="894.0403">queue
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="43.1133" x="350.4463" y="908.9524">[Kafka]
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="369.7779" y="924.7776"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61.3594"
+                  x="305.3184" y="941.0745">Message
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="366.6778" y="941.0745"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.8594"
+                  x="371.1279" y="941.0745">queue
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="414.9873" y="941.0745"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="19.25"
+                  x="419.4375" y="941.0745">for
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92.75"
+                  x="273.48" y="957.3714">CRUD-events
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="366.23" y="957.3714"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="17.1719"
+                  x="370.6802" y="957.3714">by
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="387.8521" y="957.3714"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="41.9795"
+                  x="392.3023" y="957.3714">posts,
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="434.2818" y="957.3714"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31.7939"
+                  x="438.732" y="957.3714">likes
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26.3389"
+                  x="319.7046" y="973.6682">and
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4.4502"
+                  x="346.0435" y="973.6682"> 
+            </text>
+            <text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="73.8076"
+                  x="350.4937" y="973.6682">comments
+            </text>
+        </g><!--link user to apiGateway-->
+        <g class="link" data-entity-1="user" data-entity-2="apiGateway" data-source-line="1665" data-uid="lnk9"
+           id="link_user_apiGateway">
+            <path d="M164,107.84 C164,138.62 164,170.3 164,202.38" fill="none" id="user-to-apiGateway"
+                  style="stroke:#666666;stroke-width:1;"/>
+            <polygon fill="#666666" points="164,210.38,167,202.38,161,202.38,164,210.38"
+                     style="stroke:#666666;stroke-width:1;"/>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="44.8359" x="165" y="149.7387">Create
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="209.8359" y="149.7387"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="25.2305" x="214.0137" y="149.7387">and
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="239.2441" y="149.7387"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="22.4648" x="243.4219" y="149.7387">get
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="48.5859" x="191.1504" y="163.7074">images
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="47.9004" x="191.4932" y="177.6762">[HTTPS]
+            </text>
+        </g><!--link apiGateway to cdn-->
+        <g class="link" data-entity-1="apiGateway" data-entity-2="cdn" data-source-line="1665" data-uid="lnk10"
+           id="link_apiGateway_cdn">
+            <path d="M105.32,326.29 C98.67,335.58 92.89,345.6 89,356.05 C74.93,393.82 78.1006,432.9642 83.8206,463.7942"
+                  fill="none" id="apiGateway-to-cdn" style="stroke:#666666;stroke-width:1;"/>
+            <polygon fill="#666666" points="85.28,471.66,86.7703,463.247,80.871,464.3415,85.28,471.66"
+                     style="stroke:#666666;stroke-width:1;"/>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="23.7246" x="90" y="368.1887">Get
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="113.7246" y="368.1887"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="48.5859" x="117.9023" y="368.1887">images
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="166.4883" y="368.1887"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="16.4121" x="170.666" y="368.1887">by
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="187.0781" y="368.1887"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="18.5742" x="191.2559" y="368.1887">url
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="47.9004" x="125.9648" y="382.1574">[HTTPS]
+            </text>
+        </g><!--link apiGateway to mediaService-->
+        <g class="link" data-entity-1="apiGateway" data-entity-2="mediaService" data-source-line="1665" data-uid="lnk11"
+           id="link_apiGateway_mediaService">
+            <path d="M202.31,326.28 C207.13,335.86 211.3,345.98 214,356.05 C241.75,459.76 252.95,497.57 214,597.61 C209.95,608 208.8495,611.4586 202.1495,620.7186"
+                  fill="none" id="apiGateway-to-mediaService" style="stroke:#666666;stroke-width:1;"/>
+            <polygon fill="#666666" points="197.46,627.2,204.5801,622.4772,199.719,618.96,197.46,627.2"
+                     style="stroke:#666666;stroke-width:1;"/>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="32.7012" x="240" y="495.9687">Save
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="272.7012" y="495.9687"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="48.5859" x="276.8789" y="495.9687">images
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="325.4648" y="495.9687"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="25.2305" x="329.6426" y="495.9687">and
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="354.873" y="495.9687"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="22.4648" x="359.0508" y="495.9687">get
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="18.5742" x="301.4707" y="509.9374">url
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="47.9004" x="286.8076" y="523.9062">[HTTPS]
+            </text>
+        </g><!--link cdn to mediaService-->
+        <g class="link" data-entity-1="cdn" data-entity-2="mediaService" data-source-line="1665" data-uid="lnk12"
+           id="link_cdn_mediaService">
+            <path d="M91.24,538.69 C90.9,556.26 91.48,578.28 95,597.61 C96.78,607.37 97.0569,609.827 100.0869,619.627"
+                  fill="none" id="cdn-to-mediaService" style="stroke:#666666;stroke-width:1;"/>
+            <polygon fill="#666666" points="102.45,627.27,102.953,618.7408,97.2208,620.5131,102.45,627.27"
+                     style="stroke:#666666;stroke-width:1;"/>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="32.707" x="96" y="580.7487">Pulls
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="128.707" y="580.7487"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="76.9453" x="132.8848" y="580.7487">media-data
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="47.9004" x="128.9648" y="594.7174">[HTTPS]
+            </text>
+        </g><!--link mediaService to mediaDatabase-->
+        <g class="link" data-entity-1="mediaService" data-entity-2="mediaDatabase" data-source-line="1665"
+           data-uid="lnk13" id="link_mediaService_mediaDatabase">
+            <path d="M128,757.4 C128,789.49 128,820.12 128,851.69" fill="none" id="mediaService-to-mediaDatabase"
+                  style="stroke:#666666;stroke-width:1;"/>
+            <polygon fill="#666666" points="128,859.69,131,851.69,125,851.69,128,859.69"
+                     style="stroke:#666666;stroke-width:1;"/>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="45.8086" x="129" y="799.1687">Saving
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="174.8086" y="799.1687"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="48.5859" x="178.9863" y="799.1687">images
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="227.5723" y="799.1687"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="25.2305" x="231.75" y="799.1687">and
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="55.9629" x="137.7393" y="813.1374">deleting
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="193.7021" y="813.1374"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="50.3613" x="197.8799" y="813.1374">useless
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="48.5859" x="168.6973" y="827.1062">images
+            </text>
+        </g><!--link mediaService to messageQueue-->
+        <g class="link" data-entity-1="mediaService" data-entity-2="messageQueue" data-source-line="1665"
+           data-uid="lnk14" id="link_mediaService_messageQueue">
+            <path d="M220.88,751.77 C236.17,762.8 251.43,774.76 265,787.03 C289.18,808.92 307.8728,829.7888 327.2128,853.8088"
+                  fill="none" id="mediaService-to-messageQueue" style="stroke:#666666;stroke-width:1;"/>
+            <polygon fill="#666666" points="332.23,860.04,329.5496,851.9273,324.8761,855.6902,332.23,860.04"
+                     style="stroke:#666666;stroke-width:1;"/>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="73.9336" x="306" y="806.1687">Subscribes
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="379.9336" y="806.1687"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="13.9805" x="384.1113" y="806.1687">to
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="398.0918" y="806.1687"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="37.752" x="402.2695" y="806.1687">CRUD
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="45.5215" x="308.0391" y="820.1374">events
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="353.5605" y="820.1374"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="39.2109" x="357.7383" y="820.1374">about
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.1777" x="396.9492" y="820.1374"> 
+            </text>
+            <text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing"
+                  textLength="36.8555" x="401.127" y="820.1374">posts
+            </text>
+        </g><!--SRC=[TL9BRzim3BxxLsZ63WdGn8VjL627r2xQRMtXrGrsB2YBSRNAagT7ic3OVozbEqzqFjWazJrCYX-ahbKGo5wyxznbbbdOp1lfNm8F3crjj4VjvxLfiqw1zg5LC-U5aZpBFy_AM5hUtsKjE8-MIiyvCK1gjFEEi4bIedL6JwBO1KkNz4cdoHuqWKxUWCSDREbqKNvbOvPI-j18_IS6TmO4km8ogz5UCX9np9gW1RsvrCU2Fm86dBJe73JO9yI_NbCFZlsEQTJx3gjNYC7zW1jEsCfObZykYnaEUBvbdN7UNJ0bNyaIo906qSP3yaogBJNTFb_5Fm6x9LSXOIZssfGnrwVfbFrD63s7nckX2PGN3_4_ScM2M2cmIBgdk44KxLhMk5STyqZz1kk-bS9ijA8vITraeHiZ9bjgh-yaM4MmZnuQzoNT85zqtRbNmGUt0ZnmS0SxmtzXxPdpnf9ST5lyh5ZrAKOL5SbXCAB2pa9mal-N98-enii_kUhS8iNzI1lq1tfw-_HKLaIDl6F6CA-RFVRGqtyfPwEhO8qxyixt7ONUw8nQ1gNSK9m9ciunfoUTui-dICv7bn6z1IhqiKQZKRI4km5CtrKxMUOgS5TRoKd9ctvVsRYlm4tmmygcqpS0]-->
+    </g>
+</svg>

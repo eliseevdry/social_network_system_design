@@ -1,0 +1,18 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(user, "User")
+Container(apiGateway, "API Gateway", "Nginx", "Load Balancer: Uses round robin")
+ContainerQueue(messageQueue, "Events queue", "Kafka", "Message queue for CRUD-events by posts, likes and comments")
+
+System_Boundary(coreSystem, "Core system") {
+    Container(postService, "Post Service", "Java", "Work with posts, likes and comments", $tags="webApp")
+    ContainerDb(postDatabase, "Post database", "PgSQL", "Stores posts, likes and comments",  $tags="db")
+}
+
+Rel(user, apiGateway, "CRUD: posts, likes, comments", "REST")
+Rel(apiGateway, postService, "CRUD: posts, likes, comments", "REST")
+
+Rel(postService, postDatabase, "Save posts, likes and comments")
+Rel(postService, messageQueue, "Publishing events about changes in posts, likes and comments")
+@enduml
